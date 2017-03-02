@@ -1,0 +1,19 @@
+# 针对Java开发
+
+# 忽略文件
+*.class
+*.iml
+*.jar
+*.war
+*.zip
+*.tar.gz
+.classpath
+.project
+.DS_Store
+
+# 忽略文件夹
+.idea/
+.svn/
+.settings/
+build/
+target/
