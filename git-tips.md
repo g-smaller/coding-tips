@@ -23,11 +23,10 @@ git clone usrname@host:/path/repo_name
         > 暂存文件，将文件的快照放入暂存区域；这时文件只存在本地仓库还未同步到远端服务器；
 
 ### 检查当前文件状态
-
 > git status [-sb]
 
 - s
-   
+
    > --short  输出状态报告
 - b 
    > 输出当前分支
@@ -35,9 +34,8 @@ git clone usrname@host:/path/repo_name
 ### 忽略文件
 文件名：`.gitignore`
 ##### 规范：
-- 	所有空行或者以 ＃ 开头的行都会被 Git 忽略。
+- 	所有空行或者以 *#* 开头的行都会被 Git 忽略。
 - 可以使用标准的 glob 模式匹配。
-    
     > glob 模式是指 shell 所使用的简化了的正则表达式
     
     ```
@@ -95,6 +93,55 @@ git clone usrname@host:/path/repo_name
     $ git rm filename_old
     $ git add filename_new
 ```
+
+### 查看日志
+查看提交日志
+> git log
+
+常用选项
+
+- `-p`
+
+    > 显示每次提交的内容差异
+- `-n`
+    > n是个数字，表示显示最近n次记录
+- `--stat`
+    > 显示每次提交的简略的统计信息：被修改过的文件、有多少文件被修改了以及被修改过的文件的哪些行被移除或是添加了
+- `--graph`
+    > 显示 ASCII 图形表示的分支合并历史
+- `--oneline`   
+    > 显示简短的提交信息
+- `--since, --after`
+    > 仅显示指定时间之后的提交。
+- `--until, --before`
+    > 仅显示指定时间之前的提交。
+- `--author`
+    > 仅显示指定作者相关的提交。
+- `--committer`
+    > 仅显示指定提交者相关的提交。
+- `--grep`
+    > 仅显示含指定关键字的提交
+- `-S`
+    > 仅显示添加或移除了某个关键字的提交
+
+### 撤销操作
+
+#### 修改提交信息
+
+> git commit --amend
+
+如果有暂存的文件时，运行次命令会覆盖原来的提交信息。
+
+#### 取消暂存文件
+> git reset HEAD filename
+
+#### 取消对文件的修改
+> git checkout -- filename
+
+文件必须被跟踪才起作用
+
+### 远程仓库的使用
+
 
 
 
