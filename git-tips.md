@@ -1,3 +1,14 @@
+### Git 配置
+> Git config 命令用来配置变量和外观；信息存在三个不同的位置。
+
+- `/etc/gitconfig`
+
+    > 针对所有用户。 如果使用带有 `--system` 选项的 git config 时，它会从此文件读写配置变量
+- `~/.gitconfig或者~/.config/git/config`
+    > 针对当前用户。 可以传递 `--global` 选项让 Git 读写此文件。
+- `.git/config`
+    > 针对当前仓库
+
 ### 初始化仓库
 > git init [repo_name]
 
@@ -126,16 +137,16 @@ git clone usrname@host:/path/repo_name
 
 ### 撤销操作
 
-#### 修改提交信息
+##### 修改提交信息
 
 > git commit --amend
 
 如果有暂存的文件时，运行次命令会覆盖原来的提交信息。
 
-#### 取消暂存文件
+##### 取消暂存文件
 > git reset HEAD filename
 
-#### 取消对文件的修改
+##### 取消对文件的修改
 > git checkout -- filename
 
 文件必须被跟踪才起作用
@@ -143,7 +154,70 @@ git clone usrname@host:/path/repo_name
 ### 远程仓库的使用
 
 
+##### 查看远程仓库
+> git remote
 
+    它会列出每个远程服务器的简写；
+    如果是克隆一个远程服务器，默认有个默认名称`origin`。
+
+- `-v`
+
+    > 列出每个简写名称对应可读写的远程服务器地址；
+        
+##### 添加远程仓库
+> git remote add *remote-repo-shortname* *url*
+
+    shortname 是对URL的简称
+    url       是远程仓库或者本地仓库地址
+##### 从远程仓库抓取与拉取
+> git fetch *remote-repo-shortname*
+
+    该命令从远程仓库拉取本地还没的数据，它不会自动合并或修改；需要手动；
+    如果本地分支跟踪了一个远程分支，可以使用`git pull` 来自动抓取然后合并远程分支到当前分支；
+    
+##### 推送到远程分支
+> git push [remote-repo-shortname] [local-branch-name]
+
+##### 查看远程仓库
+> git remote show [remote-repo-shortname]
+
+    会显现列表简称对于的远程仓库的信息已经本地分支情况。
+##### 远程仓库的移除与重命名
+> git remote rename [old-remote-repo-shortname] [new-remote-repo-shortname]
+
+    修改远程仓库的简称
+> git remote rm [remote-repo-shortname]
+
+    移除本地对于远程仓库的简称
+
+### 标签
+##### 列出标签
+> git tag 
+
+- `-l 'tag'`
+    
+    > `tag` 可以是具体的标签名，也可以是表达式，例如：v*
+
+##### 创建标签
+> git tag -a 'tagname' -m 'tag-msg'
+
+    还可以创建轻量标签git tag tagname，创建的标签只会显示提交信息，没有标签信息。
+
+##### 后期打标签
+> git tag -a tagname commit-id
+        
+##### 共享标签
+> git push [shortname] [tag-name|--tags]
+    
+##### 检出标签
+> git checkout -b [branch-name] [tag-name]
+
+### Git 别名
+> git config [--system|--global] alias.<b>cmd-short-name</b> '命令'
+
+    例如：git config --global alias.co checkout
+
+### 分支
 
  
 
