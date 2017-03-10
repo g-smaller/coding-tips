@@ -122,6 +122,8 @@ git clone usrname@host:/path/repo_name
     > 显示 ASCII 图形表示的分支合并历史
 - `--oneline`   
     > 显示简短的提交信息
+- `--decorate`
+    > 显示分支、标签最后一个提交对应的提交对象
 - `--since, --after`
     > 仅显示指定时间之后的提交。
 - `--until, --before`
@@ -204,10 +206,10 @@ git clone usrname@host:/path/repo_name
     还可以创建轻量标签git tag tagname，创建的标签只会显示提交信息，没有标签信息。
 
 ##### 后期打标签
-> git tag -a tagname commit-id
+> git tag -a tag-name commit-id
         
 ##### 共享标签
-> git push [shortname] [tag-name|--tags]
+> git push [remote-repo-shortname] [tag-name|--tags]
     
 ##### 检出标签
 > git checkout -b [branch-name] [tag-name]
@@ -219,7 +221,41 @@ git clone usrname@host:/path/repo_name
 
 ### 分支
 
- 
+> git 每次提交，提交对象中都会包含一个提交对象、一个树对象和N个blob对象(保存着文件快照)
+
+##### 创建分支
+> git branch local-branch-name
+
+##### 切换分支
+> git checkout local-branch-name
+
+##### 创建并切换分支
+> git checkout -b local-branch-name
+
+##### 合并分支
+    git checkout current-branch-name
+    git merge merge-branch-name
+##### 删除分支
+> git branch -d local-branch-name
+
+    删除没有合并的分支会有警告
+
+##### 强制删除分支
+> git branch -D local-branch-name
+
+
+##### 分支列表
+> git branch
+
+- `-v`
+
+    > 查看每个分支最后一个提交
+- `--merge` 
+    > 查看分支列表中那些分支已经合并
+- `--no-merge`
+    > 查看分支列表中那些分支没有合并
+    
+#####  
 
     
 
