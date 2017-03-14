@@ -250,12 +250,43 @@ git clone usrname@host:/path/repo_name
 - `-v`
 
     > 查看每个分支最后一个提交
+- `-vv`
+    > 列表本地分支包含更多的信息，如每个分支正在跟踪那个远程分支与本地分支是否领先、落后或是都有；
+    > 该选项显示的数据是你从服务器上最后一次抓取的数据；如果需要显示最新的数据，还需要从服务器上抓取最新的数据：`git fetch --all`
 - `--merge` 
     > 查看分支列表中那些分支已经合并
 - `--no-merge`
     > 查看分支列表中那些分支没有合并
     
-#####  
+#### 远程分支
+远程引用是对远程仓库的引用（指针），包括分支、标签等等
+远程分支表示方式(remote-repo-shortname)/(branch) 
+##### 抓取远程跟踪分支
+> git fetch [remote-repo-shortname]
+
+    该命令会从远程服务器上抓取跟踪分支，但是在本地不会有一个和远程分支一样的本地分支，所以需要手动合并到当前分支上；
+    git merge (remote-repo-shortname)/(branch)
+
+- `git checkout -b local-branch (remote-repo-shortname)/(branch)` 或者 `git checkout --track (remote-repo-shortname)/(branch)` 新建一个本地分支用于跟踪远程分支；跟踪分支的好处就还可以使用命令`git pull`直接从远程服务器上拉取该分支的最新信息；
+
+- `git branch [-u|--set-upstream-to] (remote-repo-shortname)/(branch)` 跟踪或者修改正在跟踪上游分支
+
+> git pull
+
+    该命令是`git fetch`和`git merge`的另一个用法；
+    它会查找当前分支所跟踪的服务器分支，从服务器上抓取数据然后尝试合并入当前分支；
+
+##### 删除远程分支
+> git push remote-repo-shortname --delete branch
+> git push remote-repo-shortname :branch
+
+    这个命令做的只是从服务器上移除这个指针。
+    Git 服务器通常会保留数据一段时间直到垃圾回收运行，所以如果不小心删除掉了，通常是很容易恢复的
+
+
+
+
+
 
     
 
